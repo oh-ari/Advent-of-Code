@@ -1,4 +1,8 @@
 # Advent of Code
 Figured I'd just keep track of my progress.
 
-![image](https://github.com/user-attachments/assets/0aafeba3-4b76-4767-8ca0-b3d13e929c36)
+Currently doing 2024 in Py (one of my weaker languages.)
+
+Will follow that up with the previous years in another language, I hope.
+
+![image](https://github.com/user-attachments/assets/fce6ed32-57f9-4a7f-b5e7-6256844d381c)
