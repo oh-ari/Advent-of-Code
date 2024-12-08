@@ -1,8 +1,8 @@
-def read_input(filename):
+def input(filename):
     with open(filename, 'r') as f:
         return [list(line.strip()) for line in f.readlines()]
 
-def find_antennas(grid):
+def antennas(grid):
     # freq -> coords
     antennas = {}
     for y in range(len(grid)):
@@ -11,11 +11,11 @@ def find_antennas(grid):
                 antennas.setdefault(grid[y][x], []).append((x, y))
     return antennas
 
-def is_collinear(p1, p2, p3):
+def collinear(p1, p2, p3):
     # check if points make line
     return (p2[1]-p1[1])*(p3[0]-p2[0]) == (p3[1]-p2[1])*(p2[0]-p1[0])
 
-def find_antinodes_part1(grid, antennas):
+def antinodes_part1(grid, antennas):
     antinodes = set()
     seen = set()
     
@@ -35,7 +35,7 @@ def find_antinodes_part1(grid, antennas):
                         antinodes.add((int(x), int(y)))
     return len(antinodes)
 
-def find_antinodes_part2(grid, antennas):
+def antinodes_part2(grid, antennas):
     antinodes = set()
     
     # find all collinear points
@@ -44,16 +44,16 @@ def find_antinodes_part2(grid, antennas):
         for y in range(len(grid)):
             for x in range(len(grid[0])):
                 for i, p1 in enumerate(positions):
-                    if any(is_collinear(p1, p2, (x,y)) 
+                    if any(collinear(p1, p2, (x,y)) 
                           for p2 in positions[i+1:]):
                         antinodes.add((x,y))
                         break
     return len(antinodes)
 
 def solve(filename):
-    grid = read_input(filename)
-    antennas = find_antennas(grid)
-    return find_antinodes_part1(grid, antennas), find_antinodes_part2(grid, antennas)
+    grid = input(filename)
+    antennas = antennas(grid)
+    return antinodes_part1(grid, antennas), antinodes_part2(grid, antennas)
 
 if __name__ == "__main__":
     p1, p2 = solve("input.txt")
